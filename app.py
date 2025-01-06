@@ -1,11 +1,14 @@
 import streamlit as st
 import requests
+import re
 
 # Streamlit App
 st.title("📞 Solvia Lead Caller")
 
 # Input fields
+name = st.text_input("Enter the person's name", "Juan")
 to_number = st.text_input("Enter the recipient's phone number", "+44764666395")
+
 
 # Function to validate phone number
 def is_valid_phone_number(phone_number):
@@ -46,7 +49,7 @@ if st.button("📞 Make Call"):
             "Content-Type": "application/json",
             "X-API-Key": "i-like-pomme",
         }
-        payload = {"to_number": to_number}
+        payload = {"name": name,"to_number": to_number}
 
         try:
             response = requests.post(url, headers=headers, json=payload)
