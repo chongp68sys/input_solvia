@@ -57,7 +57,7 @@ if data and "conversations" in data:
 
         for i, convo in enumerate(last_ten, start=1):
             conversation_id = convo.get("conversation_id", "N/A")
-            agent_name = convo.get("conversation_name", "N/A")
+            agent_name = convo.get("agent_name", "N/A")
             call_duration_secs = convo.get("call_duration_secs", "N/A")
             message_count = convo.get("message_count", "N/A")
             call_successful = convo.get("call_successful", "N/A")
