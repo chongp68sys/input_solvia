@@ -1,4 +1,5 @@
 import streamlit as st
+from streamlit_autorefresh import st_autorefresh
 import requests
 
 # Set Streamlit page config
@@ -6,8 +7,8 @@ st.set_page_config(page_title="ElevenLabs Conversations", layout="wide")
 
 st.title("🗣️ ElevenLabs Conversations with Expanding Table")
 
-# Use an HTML meta-refresh to reload the entire page every 30 seconds
-st.write('<meta http-equiv="refresh" content="30" />', unsafe_allow_html=True)
+# Set the interval to 10000 milliseconds (10 seconds)
+st_autorefresh(interval=10000, key="data_refresh")
 
 # Replace with your actual ElevenLabs API key or use st.secrets for security
 ELEVENLABS_API_KEY = st.secrets["ELEVENLABS_API_KEY"]
