@@ -29,13 +29,11 @@ def fetch_conversation_details(conversation_id: str):
         st.error(f"Error fetching conversation {conversation_id}: {e}")
         return None
 
-def display_conversations():
+def display_conversations(agent_id):
     """Displays the conversations with summary and detail view."""
     st_autorefresh(interval=30000, key="conversation_refresh")
 
-    # Assigning a unique key to the button
     if st.button("Fetch Conversations", key="fetch_conversations_button"):
-        # Fetch conversations logic
         data = fetch_conversations(agent_id)
         if data and "conversations" in data:
             conversations = data["conversations"]
@@ -52,7 +50,6 @@ def display_conversations():
                     message_count = convo.get("message_count", "N/A")
                     call_successful = convo.get("call_successful", "N/A")
 
-                    # Display summary information
                     st.write(
                         f"**No.{i} — Agent: {agent_name}**\n"
                         f"- **Conversation ID:** {conversation_id}\n"
@@ -61,7 +58,6 @@ def display_conversations():
                         f"- **Successful:** {'Yes' if call_successful else 'No'}"
                     )
 
-                    # Expander for detailed information
                     with st.expander("View Details", expanded=False):
                         details = fetch_conversation_details(conversation_id)
                         if details:
