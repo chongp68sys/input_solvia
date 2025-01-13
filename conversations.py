@@ -31,7 +31,7 @@ def fetch_conversation_details(conversation_id: str):
 
 def display_conversations(agent_id):
     """Displays the conversations with summary and detail view."""
-    st_autorefresh(interval=30000, key="conversation_refresh")
+    
 
     if st.button("Fetch Conversations", key="fetch_conversations_button"):
         data = fetch_conversations(agent_id)
@@ -42,7 +42,7 @@ def display_conversations(agent_id):
                 st.warning("No conversations returned.")
             else:
                 st.subheader("Last 10 Conversations")
-
+                st_autorefresh(interval=30000, key="conversation_refresh")
                 for i, convo in enumerate(conversations[:10], start=1):
                     conversation_id = convo.get("conversation_id", "N/A")
                     agent_name = convo.get("agent_name", "N/A")
