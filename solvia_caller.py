@@ -16,7 +16,7 @@ def solvia_caller():
         to_number = st.text_input("Enter the recipient's phone number", "+447764666395")
         agent_id = st.text_input("Agent ID", "wkf3emR8JrlVMWl93pu7")
 
-        if st.button("📞 Make Call"):
+        if st.button("\ud83d\udcde Make Call", key="make_call_button"):
             if not is_valid_phone_number(to_number):
                 st.error("Invalid phone number! Ensure it starts with '+' and has 10 to 15 digits.")
             else:
@@ -37,7 +37,7 @@ def solvia_caller():
 
     st.subheader("Agent Conversations")
     # Fetch and display conversations for the given agent ID
-    if st.button("Fetch Conversations"):
+    if st.button("Fetch Conversations", key="fetch_conversations_sidebar"):
         if agent_id.strip():
             data = fetch_conversations(agent_id)
             if data:
@@ -46,3 +46,7 @@ def solvia_caller():
                 st.error("Failed to fetch conversations.")
         else:
             st.error("Agent ID is required to fetch conversations.")
+
+# Uncomment below to run the application
+# if __name__ == "__main__":
+#     solvia_caller()

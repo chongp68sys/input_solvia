@@ -30,14 +30,12 @@ def fetch_conversation_details(conversation_id: str):
         return None
 
 def display_conversations():
-    """Displays the conversations with summary and detail view, auto-refresh every 30 seconds."""
+    """Displays the conversations with summary and detail view."""
     st_autorefresh(interval=30000, key="conversation_refresh")
 
-    # Input for agent ID
-    agent_id = st.text_input("Enter Agent ID", "wkf3emR8JrlVMWl93pu7")
-
-    if st.button("Fetch Conversations"):
-        # Fetch conversations
+    # Assigning a unique key to the button
+    if st.button("Fetch Conversations", key="fetch_conversations_button"):
+        # Fetch conversations logic
         data = fetch_conversations(agent_id)
         if data and "conversations" in data:
             conversations = data["conversations"]

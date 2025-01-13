@@ -9,7 +9,7 @@ if authenticate_user():
     solvia_caller()
 
     # Main section for Conversations
-    st.title("📞 Solvia Lead Caller")
+    #st.title("📞 Solvia Lead Caller")
     display_conversations()
 else:
     st.stop() 
