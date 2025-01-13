@@ -25,8 +25,8 @@ def authenticate_user():
         else:
             # Prompt user to enter their email or phone
             st.warning("You're not logged in. Enter your email to receive a Magic Link.")
-            user_email = st.text_input("Email", placeholder="Enter your email", key="email_input")
-            if st.button("Send Magic Link", key="send_button"):
+            user_email = st.text_input("Email", placeholder="Enter your email")
+            if st.button("Send Magic Link"):
                 send_magic_link(user_email)
         return False  # User is not authenticated
     else:
