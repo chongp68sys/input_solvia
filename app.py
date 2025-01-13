@@ -5,12 +5,10 @@ from conversations import display_conversations
 
 if authenticate_user():
     st.sidebar.title("📞 Dialler")
-    solvia_caller()
+    agent_id = solvia_caller()  # Get the agent_id from the caller function
 
-    # Get agent_id from user input
-    agent_id = st.sidebar.text_input("Agent ID", "default_agent_id")
-
-    # Pass agent_id to display_conversations
-    display_conversations(agent_id)
+    # Pass the agent_id to display_conversations
+    if agent_id:  # Ensure agent_id is not empty
+        display_conversations(agent_id)
 else:
     st.stop()

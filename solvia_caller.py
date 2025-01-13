@@ -14,7 +14,7 @@ def solvia_caller():
         st.subheader("Caller Information")
         name = st.text_input("Enter the person's name", "Paul")
         to_number = st.text_input("Enter the recipient's phone number", "+447764666395")
-        agent_id = st.text_input("Agent ID", "wkf3emR8JrlVMWl93pu7")
+        agent_id = st.text_input("Agent ID", "wkf3emR8JrlVMWl93pu7")  # Keep this as the only Agent ID input
 
         if st.button("📞 Make Call", key="make_call_button"):
             if not is_valid_phone_number(to_number):
@@ -34,7 +34,4 @@ def solvia_caller():
                         st.error(f"Error {response.status_code}: {response.text}")
                 except requests.exceptions.RequestException as e:
                     st.error(f"An error occurred while making the call: {e}")
-
-# Uncomment below to run the application
-# if __name__ == "__main__":
-#     solvia_caller()
+    return agent_id  # Return the agent_id for use elsewhere
