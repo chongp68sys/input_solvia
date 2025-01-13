@@ -11,9 +11,9 @@ def solvia_caller():
     """Main logic for the Solvia Lead Caller."""
     with st.sidebar:
         st.subheader("Caller Information")
-        name = st.text_input("Enter the person's name", "Juan")
+        name = st.text_input("Enter the person's name", "Paul")
         to_number = st.text_input("Enter the recipient's phone number", "+447764666395")
-        agent_id = st.text_input("Agent ID", "UM2lnArVSaZnyHoGKvCF")
+        agent_id = st.text_input("Agent ID", "wkf3emR8JrlVMWl93pu7")
 
         if st.button("📞 Make Call"):
             if not is_valid_phone_number(to_number):
