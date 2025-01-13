@@ -16,7 +16,7 @@ def solvia_caller():
         to_number = st.text_input("Enter the recipient's phone number", "+447764666395")
         agent_id = st.text_input("Agent ID", "wkf3emR8JrlVMWl93pu7")
 
-        if st.button("\ud83d\udcde Make Call", key="make_call_button"):
+        if st.button("📞 Make Call", key="make_call_button"):
             if not is_valid_phone_number(to_number):
                 st.error("Invalid phone number! Ensure it starts with '+' and has 10 to 15 digits.")
             else:
