@@ -31,7 +31,7 @@ def fetch_conversation_details(conversation_id: str):
 
 def display_conversations(agent_id):
     """Displays the conversations with summary and detail view."""
-    st_autorefresh(interval=30000, key="conversation_refresh")
+    #st_autorefresh(interval=30000, key="conversation_refresh")
     if st.button("Fetch Conversations", key="fetch_conversations_button"):
         data = fetch_conversations(agent_id)
         if data and "conversations" in data:
