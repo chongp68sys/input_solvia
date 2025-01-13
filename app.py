@@ -1,5 +1,4 @@
 import streamlit as st
-from auth_bak import authenticate_user
 from solvia_caller import solvia_caller
 from conversations import display_conversations
 
