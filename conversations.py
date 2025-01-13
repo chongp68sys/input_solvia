@@ -30,23 +30,11 @@ def fetch_conversation_details(conversation_id: str):
         return None
 
 def display_conversations(agent_id):
-    """Displays the conversations with summary and detail view using lazy loading."""
-    
-    # Create a placeholder for the conversations
-    conversation_container = st.empty()
-    
-    # Set up autorefresh; this will trigger the script to rerun every 30 seconds
+    """Displays the conversations with summary and detail view."""
     st_autorefresh(interval=30000, key="conversation_refresh")
     
-    # Optionally, you can add a manual refresh button
-    # if st.button("Refresh Conversations"):
-    #     pass  # The autorefresh will handle automatic updates
-    
-    # Fetch the conversations data
-    data = fetch_conversations(agent_id)
-    
-    # Update the placeholder with new content
-    with conversation_container:
+    if st.button("Fetch Conversations", key="fetch_conversations_button"):
+        data = fetch_conversations(agent_id)
         if data and "conversations" in data:
             conversations = data["conversations"]
 
@@ -54,7 +42,7 @@ def display_conversations(agent_id):
                 st.warning("No conversations returned.")
             else:
                 st.subheader("Last 10 Conversations")
-
+                st_autorefresh(interval=30000, key="conversation_refresh")
                 for i, convo in enumerate(conversations[:10], start=1):
                     conversation_id = convo.get("conversation_id", "N/A")
                     agent_name = convo.get("agent_name", "N/A")
@@ -62,7 +50,7 @@ def display_conversations(agent_id):
                     message_count = convo.get("message_count", "N/A")
                     call_successful = convo.get("call_successful", "N/A")
 
-                    st.markdown(
+                    st.write(
                         f"**No.{i} — Agent: {agent_name}**\n"
                         f"- **Conversation ID:** {conversation_id}\n"
                         f"- **Duration:** {call_duration_secs} seconds\n"
@@ -78,17 +66,3 @@ def display_conversations(agent_id):
                             st.write("No additional details available for this conversation.")
         else:
             st.warning("No conversations found or unable to retrieve data.")
-
-def main():
-    st.title("Agent Conversations Dashboard")
-    
-    # Example agent_id input; you can modify this as needed
-    agent_id = st.text_input("Enter Agent ID", value="default_agent_id")
-    
-    if agent_id:
-        display_conversations(agent_id)
-    else:
-        st.info("Please enter an Agent ID to view conversations.")
-
-if __name__ == "__main__":
-    main()
