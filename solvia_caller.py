@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 import re
+from conversations import fetch_conversations
 
 def is_valid_phone_number(phone_number):
     """Validate phone number format."""
@@ -33,3 +34,15 @@ def solvia_caller():
                         st.error(f"Error {response.status_code}: {response.text}")
                 except requests.exceptions.RequestException as e:
                     st.error(f"An error occurred while making the call: {e}")
+
+    st.subheader("Agent Conversations")
+    # Fetch and display conversations for the given agent ID
+    if st.button("Fetch Conversations"):
+        if agent_id.strip():
+            data = fetch_conversations(agent_id)
+            if data:
+                st.write("Fetched Conversations:", data)
+            else:
+                st.error("Failed to fetch conversations.")
+        else:
+            st.error("Agent ID is required to fetch conversations.")
