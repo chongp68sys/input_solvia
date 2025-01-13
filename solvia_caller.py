@@ -13,6 +13,7 @@ def solvia_caller():
         st.subheader("Caller Information")
         name = st.text_input("Enter the person's name", "Juan")
         to_number = st.text_input("Enter the recipient's phone number", "+447764666395")
+        agent_id = st.text_input("UM2lnArVSaZnyHoGKvCF")
 
         if st.button("📞 Make Call"):
             if not is_valid_phone_number(to_number):
@@ -23,7 +24,7 @@ def solvia_caller():
                     "Content-Type": "application/json",
                     "X-API-Key": "i-like-pomme",
                 }
-                payload = {"name": name, "to_number": to_number}
+                payload = {"name": name, "to_number": to_number, "agent_id": agent_id}
                 try:
                     response = requests.post(url, headers=headers, json=payload)
                     if response.status_code == 200:
